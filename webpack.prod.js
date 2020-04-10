@@ -1,10 +1,11 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
-const  MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const  OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const  = require('clean-webpack-plugin');
 
 module.exports = {
   // 指定webpack 打包入口
@@ -17,8 +18,8 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name]_[chunkhash:8].js'
   },
-  mode: 'production', 
-   
+  mode: 'production',
+
   module: {
     rules: [
       {
@@ -30,7 +31,8 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'less-loader'
+          'less-loader',
+          
         ]
       },
       {
@@ -62,7 +64,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin ({
+    new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
     }),
     new OptimizeCssAssetsWebpackPlugin({
@@ -74,7 +76,7 @@ module.exports = {
       filename: 'search.html',
       chunks: ['search'],
       inject: true,
-      minify:{
+      minify: {
         html5: true,
         collapseWhitespace: true,
         preserveLineBreaks: false,
@@ -89,7 +91,7 @@ module.exports = {
       filename: 'index.html',
       chunks: ['index'],
       inject: true,
-      minify:{
+      minify: {
         html5: true,
         collapseWhitespace: true,
         preserveLineBreaks: false,
