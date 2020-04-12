@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // 指定webpack 打包入口
@@ -52,10 +52,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin()
+    // new CleanWebpackPlugin()
   ],
   devServer: {
     contentBase: './dist',
+    host: '0.0.0.0',
     hot: true
   }
 
