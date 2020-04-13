@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const  = require('clean-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 const setMPA = () => {
   const entry = {};
@@ -25,7 +25,7 @@ const setMPA = () => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, `src/${pageName}/index.html`),
         filename: `${pageName}.html`,
-        chunks: [pageName],
+        chunks: ['vendors','commons', pageName],
         inject: true,
         minify: {
           html5: true,
@@ -125,7 +125,34 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'react',
+    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c', //  可以是本地文件 也可以是cdn文件
+    //       global: 'React',
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c',
+    //       global: 'ReactDom',
+    //     },
+    //   ],
+    // }),
     new CleanWebpackPlugin()
   ].concat(HtmlWebpackPlugins),
-  devtool: 'inline-source-map'
+  optimization: {
+    splitChunks: {
+      minSize: 0,
+     cacheGroups: {
+       commons: {
+         name: 'commons',
+         chunks: 'all',
+         minChunks: 2
+       }
+     }
+
+    }
+  }
+  // devtool: 'inline-source-map'
 }

@@ -99,7 +99,7 @@ module.exports = {
     host: '0.0.0.0',
     hot: true
   },
-  devtool: 'ource-map'
+  devtool: 'source-map'
 
 
 }
