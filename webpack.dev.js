@@ -6,13 +6,13 @@ const webpack = require('webpack')
 module.exports = {
   // 指定webpack 打包入口
   entry: {
-    index: './src/index.js',
-    search: './src/search.js'
+    index: './src/index/index.js',
+    search: './src/search/search.js'
   },
 
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name][chunkhash:8].js'
+    filename: '[name][hash:8].js'
   },
   mode: 'development',  // development process.env
   module: {

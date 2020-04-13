@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  ${require('raw-loader!./meta.html')} // 内联meta.html
+  <script>${ require('raw-loader!babel-loader!../../node_modules/lib-flexible/flexible.js') }</script>
+  <title>search</title>
+</head>
+
+<body>
+  <div id='root'></div>
+</body>
+
+</html>

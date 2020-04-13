@@ -10,8 +10,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   // 指定webpack 打包入口
   entry: {
-    index: './src/index.js',
-    search: './src/search.js'
+    index: './src/index/index.js',
+    search: './src/search/search.js'
   },
 
   output: {
@@ -89,7 +89,7 @@ module.exports = {
       cssProcessor: require('cssnano')
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/search.html'),
+      template: path.join(__dirname, 'src/search/search.html'),
       filename: 'search.html',
       chunks: ['search'],
       inject: true,
@@ -104,7 +104,7 @@ module.exports = {
 
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
+      template: path.join(__dirname, 'src/index/index.html'),
       filename: 'index.html',
       chunks: ['index'],
       inject: true,
