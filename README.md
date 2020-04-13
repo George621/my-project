@@ -8,7 +8,7 @@
  5.移动端 csspx 自动转换rem,静态资源内联
  6.多页面打包通用方案，source-map 使用，提取公共资源 splitChuank plugin
  7.tree Shaking  Scope Hoisting production 环境默认开启
- 8.
+ 8.动态import js webpack + ESLint 集成
  9.
  10.
  11.
