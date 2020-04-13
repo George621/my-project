@@ -11,10 +11,10 @@ const Search = ()=> {
     <div className='search-text'> 
       <span>seatch text 122 内容,before after write</span>
       <p>
-        1. 静态资源内联问题待解决
+        1. 静态资源内联问题待解决-> "html-webpack-plugin": "^4.2.0", 导致的所以用ejs 写法解决了
       </p>
       <p>
-        2.  
+        2.  。。。
       </p>
       <img src={logo} />
       <img src={logo} />
