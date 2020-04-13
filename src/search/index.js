@@ -6,7 +6,6 @@ import ReactDom from 'react-dom'
 import './search.less'
  
 const Search = ()=> {
-
   return (
     <div className='search-text'> 
       <span>seatch text 122 内容,before after write</span>
@@ -18,4 +17,3 @@ const Search = ()=> {
 ReactDom.render(
   <Search />, document.getElementById('root')
 )
-// export default Search
