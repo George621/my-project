@@ -101,7 +101,7 @@ module.exports = {
         use: [
           // 'file-loader'
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               // limit: 10240,
               name: '[name]_[hash:8].[ext]'
@@ -114,7 +114,7 @@ module.exports = {
         use: [
           // 'file-loader'
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               // limit: 10240,
               name: '[name]_[hash:8][ext]'

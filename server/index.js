@@ -1,18 +1,21 @@
-
+// 遇到问题 1.window is not defined
 if(typeof window === 'undefined'){
   global.window = {}
 }
 
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const {renderToString} = require('react-dom/server');
-const SSR = require('../src/search/search-server');
+const SSR = require('../dist/search-server');
+const template = fs.readFileSync(path.join(__dirname,'../dist/search.html'),'utf-8');
+
 const  server = (port) =>{
   const app = express();
   app.use(express.static('dist'));  // 设置静态目录
 
   app.get('/search',(req, res)=>{
     const html = renderMarkup(renderToString(SSR))
-    console.log(html, 'html***')
     res.status(200).send( html );
   })
 
@@ -24,17 +27,5 @@ const  server = (port) =>{
 server(process.env.PORT || 3000);
 
 const renderMarkup = (str ) =>{ // 包装打包大字符串
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-    </head>
-    <body>
-      <div id="root">${str}</div>
-    </body>
-    </html>
-  `;
+  return template.replace('<!-- HTML_PLACEHOlDER -->', str);
 }
