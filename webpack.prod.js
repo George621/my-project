@@ -50,7 +50,7 @@ const {entry, HtmlWebpackPlugins} = setMPA();
 module.exports = {
   // 指定webpack 打包入口
   entry: entry,
-
+  resolve: { extensions: ['.js', '.jsx'] },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name]_[chunkhash:8].js'
