@@ -9,7 +9,7 @@
  6.多页面打包通用方案，source-map 使用，提取公共资源 splitChuank plugin
  7.tree Shaking  Scope Hoisting production 环境默认开启
  8.动态import js webpack + ESLint 集成
- 9.
+ 9.webpack 打包js库，大整数加法 参考 （https://github.com/George621/large-number）
  10.
  11.
  12.

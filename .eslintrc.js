@@ -7,6 +7,7 @@ module.exports = {
     "es6": true
   },
   "rules": {
+    "off": 0,
     "no-set-state": "off",
     "semi": 0,
     "quotes": [1, "single"],//引号类型 `` "" '',
