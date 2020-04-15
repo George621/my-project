@@ -60,10 +60,10 @@ module.exports = {
     libraryTarget: 'umd'
   },
   mode: 'none' ,//'production',
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom'
-  },
+  // externals: {
+  //   react: 'react',
+  //   'react-dom': 'react-dom'
+  // },
   module: {
     rules: [
       {
@@ -154,9 +154,10 @@ module.exports = {
       minSize: 0,
      cacheGroups: {
        commons: {
-         name: 'commons',
+         name: 'vendor',
+         test: /[\\/]node_modules[\\/](react|react-dom)/,
          chunks: 'all',
-         minChunks: 2
+         minChunks: 1
        }
      }
 
