@@ -7,7 +7,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
-
+const FriendlyErrorsWebpackPlugin= require('friendly-errors-webpack-plugin');
 const setMPA = () => {
   const entry = {};
   const HtmlWebpackPlugins = [];
@@ -61,7 +61,7 @@ module.exports = {
     rules: [
       {
         test: /.js$/,
-        use: ['babel-loader','eslint-loader']
+        use: ['babel-loader']  // ,'eslint-loader'
       },
       {
         test: /\.(le|c)ss$/,
@@ -139,7 +139,8 @@ module.exports = {
     //     },
     //   ],
     // }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin()
   ].concat(HtmlWebpackPlugins),
   optimization: {
     splitChunks: {
@@ -153,6 +154,7 @@ module.exports = {
      }
 
     }
-  }
+  },
   // devtool: 'inline-source-map'
+  stats: 'errors-only'
 }

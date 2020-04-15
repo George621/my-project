@@ -15,7 +15,7 @@ const Search = () => {
     <div className='search-text'>
       <span> seatch text 122 内容,before after write</span>
       <p>
-        1. 静态资源内联问题待解决 html-webpack-plugin 
+        1. 22静态资源内联问题待解决 html-webpack-plugin 
       </p>
       <div>
         {text}

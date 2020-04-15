@@ -3,6 +3,7 @@ const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin= require('friendly-errors-webpack-plugin');
 
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -92,12 +93,14 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new FriendlyErrorsWebpackPlugin()
     // new CleanWebpackPlugin()
   ].concat(HtmlWebpackPlugins),
   devServer: {
     contentBase: './dist',
     host: '0.0.0.0',
-    hot: true
+    hot: true,
+    stats: 'errors-only' // 日志打印优化
   },
   devtool: 'source-map'
 

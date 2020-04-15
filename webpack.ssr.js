@@ -103,8 +103,9 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              // limit: 10240,
-              name: '[name]_[hash:8].[ext]'
+              limit: 10240,  // 小于这个字节就打包成base64  ，不想这样就改为1 啊
+              name: '[name]_[hash:8].[ext]',
+              esModule: false, // 该项默认为true，改为false即可 打包出大图片为对象 default
             }
           }
         ]
@@ -114,7 +115,7 @@ module.exports = {
         use: [
           // 'file-loader'
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
               // limit: 10240,
               name: '[name]_[hash:8][ext]'

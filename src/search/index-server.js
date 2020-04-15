@@ -4,13 +4,13 @@
 // import './search.less';
 
 const React = require('react');
-const {useState} = require('react');
+// const {useState} = require('react');
 const  logo = require('./images/logo.png');
 // const ReactDom = require('react-dom')
 require('./search.less');
 
 const Search = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = React.useState('');
   const loadComponent = () => {
     import('./text.js').then((Text) => {
       setText(Text.default)
