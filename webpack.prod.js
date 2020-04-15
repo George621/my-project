@@ -7,7 +7,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
-const FriendlyErrorsWebpackPlugin= require('friendly-errors-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const setMPA = () => {
   const entry = {};
   const HtmlWebpackPlugins = [];
@@ -19,13 +19,13 @@ const setMPA = () => {
     const entryFile = entryFiles[index];
     // /Users/george/Desktop/my-project/src/index/index.js'
     const match = entryFile.match(/src\/(.*)\/index\.js/);
-    const pageName = match &&  match[1]
+    const pageName = match && match[1]
     entry[pageName] = entryFile;
     HtmlWebpackPlugins.push(
       new HtmlWebpackPlugin({
         template: path.join(__dirname, `src/${pageName}/index.html`),
         filename: `${pageName}.html`,
-        chunks: ['vendors','commons', pageName],
+        chunks: ['vendors', 'commons', pageName],
         inject: true,
         minify: {
           html5: true,
@@ -35,7 +35,7 @@ const setMPA = () => {
           minifyJS: true,
           removeComments: false
         }
-  
+
       })
     )
   })
@@ -46,7 +46,7 @@ const setMPA = () => {
     HtmlWebpackPlugins
   }
 }
-const {entry, HtmlWebpackPlugins} = setMPA();
+const { entry, HtmlWebpackPlugins } = setMPA();
 module.exports = {
   // 指定webpack 打包入口
   entry: entry,
@@ -55,7 +55,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name]_[chunkhash:8].js'
   },
-  mode: 'production' ,//'production',
+  mode: 'production',//'production',
 
   module: {
     rules: [
@@ -125,33 +125,29 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
-    // new HtmlWebpackExternalsPlugin({
-    //   externals: [
-    //     {
-    //       module: 'react',
-    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c', //  可以是本地文件 也可以是cdn文件
-    //       global: 'React',
-    //     },
-    //     {
-    //       module: 'react-dom',
-    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c',
-    //       global: 'ReactDom',
-    //     },
-    //   ],
-    // }),
     new CleanWebpackPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+    function () { // 
+      this.hooks.done.tap('done', (stats) => {
+        if (stats.compilation.errors &&
+          stats.compilation.errors.length &&
+          process.argv.indexOf('--watch') == -1) {
+            console.log('build error --**--stop--**- here')
+            process.exit(1);
+        }
+      })
+    }
   ].concat(HtmlWebpackPlugins),
   optimization: {
     splitChunks: {
       minSize: 0,
-     cacheGroups: {
-       commons: {
-         name: 'commons',
-         chunks: 'all',
-         minChunks: 2
-       }
-     }
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
 
     }
   },

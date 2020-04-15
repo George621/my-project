@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import logo from './images/logo.png';
 import './search.less';
+// import common from './common'
 
 const Search = () => {
   const [text, setText] = useState('');
