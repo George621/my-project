@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+// import React from 'react';  // , { useState }
 // // import ReactDom from 'react-dom';
 // import logo from './images/logo.png';
 // import './search.less';
@@ -10,11 +10,12 @@ const  logo = require('./images/logo.png');
 require('./search.less');
 
 const Search = () => {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState('1');
   const loadComponent = () => {
-    import('./text.js').then((Text) => {
-      setText(Text.default)
-    })
+    console.log('1212')
+    // import('./text.js').then((Text) => {
+    //   setText(Text.default)
+    // })
   }
 
   return (
@@ -30,5 +31,5 @@ const Search = () => {
     </div>
   )
 }
- 
+
 module.exports = <Search />

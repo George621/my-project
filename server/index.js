@@ -7,9 +7,10 @@ if (typeof window === 'undefined') {
   global.window = {}
 }
 
-const SSR = require('../dist/search-server');
+const SSR = require('../dist/search-server.js');
 const template = fs.readFileSync(path.join(__dirname, '../dist/search.html'), 'utf-8'); // 同步
 const data = require('./data.json')
+console.log(SSR, '====')
 
 const server = (port) => {
   const app = express();
@@ -29,7 +30,6 @@ server(process.env.PORT || 3000);
 
 const renderMarkup = (str) => { // 包装打包大字符串
   const dataStr = JSON.stringify(data)
-  return template.replace('<!-- HTML_PLACEHOlDER -->', str).
-    replace('<!-- INITAL_DATA_PLACEHOLDER -->', `<script>window.__initial_data = ${dataStr}</script>`)
-    ;
+  // console.log(template.replace('<!-- HTML_PLACEHOlDER -->', str), '****')
+  return (template.replace('<!-- HTML_PLACEHOlDER -->', str).replace('<!-- INITAL_DATA_PLACEHOLDER -->', `<script>window.__initial_data = ${dataStr}</script>`))
 }

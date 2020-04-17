@@ -19,14 +19,14 @@ const setMPA = () => {
     const entryFile = entryFiles[index];
     // /Users/george/Desktop/my-project/src/index/index.js'
     const match = entryFile.match(/src\/(.*)\/index-server\.js/);
-    const pageName = match &&  match[1]
+    const pageName = match && match[1]
     entry[pageName] = entryFile;
-    if(pageName) {
+    if (pageName) {
       HtmlWebpackPlugins.push(
         new HtmlWebpackPlugin({
           template: path.join(__dirname, `src/${pageName}/index.html`),
           filename: `${pageName}.html`,
-          chunks: ['vendors','commons', pageName],
+          chunks: ['vendors', 'commons', pageName],
           inject: true,
           minify: {
             html5: true,
@@ -36,11 +36,11 @@ const setMPA = () => {
             minifyJS: true,
             removeComments: false
           }
-    
+
         })
       )
     }
-   
+
   })
 
   // console.log(entryFiles, '===')
@@ -49,7 +49,7 @@ const setMPA = () => {
     HtmlWebpackPlugins
   }
 }
-const {entry, HtmlWebpackPlugins} = setMPA();
+const { entry, HtmlWebpackPlugins } = setMPA();
 module.exports = {
   // 指定webpack 打包入口
   entry: entry,
@@ -59,11 +59,11 @@ module.exports = {
     filename: '[name]-server.js',
     libraryTarget: 'umd'
   },
-  mode: 'none' ,//'production',
-  // externals: {
-  //   react: 'react',
-  //   'react-dom': 'react-dom'
-  // },
+  mode: 'none',//'production',
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom'
+  },
   module: {
     rules: [
       {
@@ -133,33 +133,17 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
-    // new HtmlWebpackExternalsPlugin({
-    //   externals: [
-    //     {
-    //       module: 'react',
-    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c', //  可以是本地文件 也可以是cdn文件
-    //       global: 'React',
-    //     },
-    //     {
-    //       module: 'react-dom',
-    //       entry: 'https://s03.appmifile.com/in/spps_js//react.js?de22ad4c',
-    //       global: 'ReactDom',
-    //     },
-    //   ],
-    // }),
     new CleanWebpackPlugin()
   ].concat(HtmlWebpackPlugins),
   optimization: {
     splitChunks: {
-      minSize: 0,
-     cacheGroups: {
-       commons: {
-         name: 'vendor',
-         test: /[\\/]node_modules[\\/](react|react-dom)/,
-         chunks: 'all',
-         minChunks: 1
-       }
-     }
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
 
     }
   }

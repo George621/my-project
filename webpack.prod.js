@@ -142,10 +142,10 @@ module.exports = {
     splitChunks: {
       minSize: 0,
       cacheGroups: {
-        commons: {
-          name: 'commons',
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
           chunks: 'all',
-          minChunks: 2
         }
       }
 
