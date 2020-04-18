@@ -124,6 +124,20 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals:[ // 不会打入文件
+    //     {
+    //       module: 'react',
+    //       entry:'',
+    //       global:'React'
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry:'',
+    //       global:'ReactDom'
+    //     }
+    //   ]
+    // }),
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
     function () { // 

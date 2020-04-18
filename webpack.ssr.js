@@ -133,6 +133,20 @@ module.exports = {
       assetNameRegExp: /.css$/g,
       cssProcessor: require('cssnano')
     }),
+    new HtmlWebpackExternalsPlugin({
+      externals:[ // 不会打入文件
+        {
+          module: 'react',
+          entry:'//now8.gtimg.com/now/lib/16.2.0/react.min.js',
+          global:'React'
+        },
+        {
+          module: 'react-dom',
+          entry:'//now8.gtimg.com/now/lib/16.2.0/react-dom.min.js',
+          global:'ReactDom'
+        }
+      ]
+    }),
     new CleanWebpackPlugin()
   ].concat(HtmlWebpackPlugins),
   optimization: {
