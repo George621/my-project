@@ -7,12 +7,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
+const projectRoot = process.cwd();
+
 const setMPA = () => {
   const entry = {};
   const HtmlWebpackPlugins = [];
 
 
-  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'));
+  const entryFiles = glob.sync(path.join(projectRoot, './src/*/index.js'));
 
   Object.keys(entryFiles).map((index) => {
     const entryFile = entryFiles[index];
@@ -22,7 +24,7 @@ const setMPA = () => {
     entry[pageName] = entryFile;
     return HtmlWebpackPlugins.push(
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, `src/${pageName}/index.html`),
+        template: path.join(projectRoot, `src/${pageName}/index.html`),
         filename: `${pageName}.html`,
         chunks: ['vendors', 'commons', pageName],
         inject: true,
@@ -39,7 +41,7 @@ const setMPA = () => {
     );
   });
 
-  // console.log(entryFiles, '===')
+  console.log(entryFiles, '===')
   return {
     entry,
     HtmlWebpackPlugins,
@@ -52,7 +54,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.(js|jsx)$/,
         use: ['babel-loader'], // ,'eslint-loader'
       },
       {

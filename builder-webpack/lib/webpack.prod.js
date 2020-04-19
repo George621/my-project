@@ -11,7 +11,7 @@ const prodConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new OptimizeCssAssetsWebpackPlugin({
-      assetNameRegExp: /.css$/g,
+      assetNameRegExp: /\.css$/g,
       cssProcessor: cssnano,
     }),
     // new FriendlyErrorsWebpackPlugin()
