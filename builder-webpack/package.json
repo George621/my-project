@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "istanbul cover ./node_modules/.bin/_mocha",
     "eslint": "eslint ./lib --fix"
   },
   "keywords": [],
@@ -15,11 +15,13 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "assert": "^2.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "glob-all": "^3.2.1",
+    "istanbul": "^0.4.5",
     "mocha": "^7.1.1",
     "rimraf": "^3.0.2"
   },

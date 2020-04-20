@@ -35,13 +35,12 @@ const setMPA = () => {
           minifyCSS: true,
           minifyJS: true,
           removeComments: false,
-        },
-
-      }),
-    );
+        }
+      })
+    )
   });
 
-  console.log(entryFiles, '===')
+  // console.log(entryFiles, '===')
   return {
     entry,
     HtmlWebpackPlugins,
